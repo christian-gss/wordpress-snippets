@@ -69,7 +69,7 @@ $args = array(
 );
 ```
 ### Return Content of a particular page by ID
-You can return page content of a page by it's ID using this approach
+You can return page content of a page by ID using this approach.
 ```
 function get_the_content_by_id($post_id) {
   $page_data = get_page($post_id);
@@ -78,4 +78,31 @@ function get_the_content_by_id($post_id) {
   }
   else return false;
 }
+```
+### Basic Loop
+Basic loop with args.
+```
+<?php 
+$args = array(
+    'post_type' => 'post',
+    'posts_per_page' => 5,
+);
+$query = new WP_Query( $args );
+
+if ( $blog->have_posts() ) : while ( $blog->have_posts() ) : $blog->the_post();
+    $categories = get_the_category($post->ID);
+    $cat_link = get_category_link($categories[0]->cat_ID);
+
+    // To get category name and link
+    <a href="<?php echo $cat_link; ?>"><?php echo $categories[0]->cat_name; ?></a>
+
+    // Post title
+    <a href="<?php the_permalink(); ?>"<?php echo get_the_title(); ?></a>
+
+    // Get Date
+    <p><?php echo get_the_date('Y/m/d');?></p>
+
+endwhile; 
+else : endif;
+?>
 ```
