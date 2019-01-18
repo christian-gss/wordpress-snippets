@@ -106,3 +106,11 @@ endwhile;
 else : endif;
 ?>
 ```
+### Show all categories
+This code display all categories
+```
+$categories = get_categories();
+foreach($categories as $category) { 
+    echo '<li><a href="' . get_category_link($category->term_id) . '">' . $category->name . '</a></li>';
+}
+```
