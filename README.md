@@ -54,3 +54,24 @@ if (function_exists("pagination")) {
   pagination($blog->max_num_pages);
 }
 ```
+You can now add this after your loop
+
+```
+if (function_exists("pagination")) {
+  pagination($blog->max_num_pages);
+}
+```
+Add this to your query 
+```
+$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+```
+
+Also add this to your argument to your query
+```
+$args = array(
+    'offset' => $offset,
+    'post_type' => 'post',
+    'posts_per_page' => $limit,
+    'paged' => $paged
+);
+```
