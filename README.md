@@ -89,7 +89,7 @@ $args = array(
 );
 $query = new WP_Query( $args );
 
-if ( $blog->have_posts() ) : while ( $blog->have_posts() ) : $blog->the_post();
+if ( $query->have_posts() ) : while ( $query->have_posts() ) : $query->the_post();
     $categories = get_the_category($post->ID);
     $cat_link = get_category_link($categories[0]->cat_ID);
 
