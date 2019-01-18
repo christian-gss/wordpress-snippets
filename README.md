@@ -54,19 +54,12 @@ if (function_exists("pagination")) {
   pagination($blog->max_num_pages);
 }
 ```
-You can now add this after your loop
-
-```
-if (function_exists("pagination")) {
-  pagination($blog->max_num_pages);
-}
-```
 Add this to your query 
 ```
 $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 ```
 
-Also add this to your argument to your query
+You can now add the `$paged` to the argument `paged`.
 ```
 $args = array(
     'offset' => $offset,
@@ -74,4 +67,15 @@ $args = array(
     'posts_per_page' => $limit,
     'paged' => $paged
 );
+```
+### Return Content of a particular page by ID
+You can return page content of a page by it's ID using this approach
+```
+function get_the_content_by_id($post_id) {
+  $page_data = get_page($post_id);
+  if ($page_data) {
+    return $page_data->post_content;
+  }
+  else return false;
+}
 ```
